@@ -28,5 +28,6 @@ function Grid(size) {
   self.init();
 };
 
-new Grid(4)
+var grid = new Grid(4);
+
 

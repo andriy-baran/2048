@@ -8,3 +8,9 @@
   background-color: burlywood;
   border: 1px solid black;
 }
+.inner-content{
+  border-radius: 3px;
+  text-align: center;
+  font-size: 55px;
+  margin: 20px 0;
+}
