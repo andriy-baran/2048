@@ -4,36 +4,38 @@
     <meta charset="UTF-8">
     <title>Game 2048</title>
     <link href="styles/main.css" rel="stylesheet" type="text/css">
-    <script type="js/grid_builder.js"></script>
   </head>
 
   <body>
     <h1>2048</h1>
       <div class="container">
-        <div class="row">
-          <div class="cell"></div>
-          <div class="cell"></div>
-          <div class="cell"></div>
-          <div class="cell"></div>
+        <div class="col">
+          <div class="cell" id="pos_0_0"></div>
+          <div class="cell" id="pos_1_0"></div>
+          <div class="cell" id="pos_2_0"></div>
+          <div class="cell" id="pos_3_0"></div>
         </div>
-        <div class="row">
-          <div class="cell"></div>
-          <div class="cell"></div>
-          <div class="cell"></div>
-          <div class="cell"></div>
+        <div class="col">
+          <div class="cell" id="pos_0_1"></div>
+          <div class="cell" id="pos_1_1"></div>
+          <div class="cell" id="pos_2_1"></div>
+          <div class="cell" id="pos_3_1"></div>
         </div>
-        <div class="row">
-          <div class="cell"></div>
-          <div class="cell"></div>
-          <div class="cell"></div>
-          <div class="cell"></div>
+        <div class="col">
+          <div class="cell" id="pos_0_2"></div>
+          <div class="cell" id="pos_1_2"></div>
+          <div class="cell" id="pos_2_2"></div>
+          <div class="cell" id="pos_3_2"></div>
         </div>
-        <div class="row">
-          <div class="cell"></div>
-          <div class="cell"></div>
-          <div class="cell"></div>
-          <div class="cell"></div>
+        <div class="col">
+          <div class="cell" id="pos_0_3"></div>
+          <div class="cell" id="pos_1_3"></div>
+          <div class="cell" id="pos_2_3"></div>
+          <div class="cell" id="pos_3_3"></div>
         </div>
       </div>
   </body>
+  <script type="text/javascript" src="js/cell.js"></script>
+  <script type="text/javascript" src="js/grid.js"></script>
+  <script type="text/javascript" src="js/event_catcher.js"></script>
 </html>

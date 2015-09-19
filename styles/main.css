@@ -1,9 +1,10 @@
 .container{
 
 }
-.row {float: left}
+.col {float: left}
 .cell{
   width: 100px;
   height: 100px;
   background-color: burlywood;
+  border: 1px solid black;
 }
