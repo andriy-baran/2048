@@ -1,8 +1,10 @@
 function EventCatcher(){
   this.listen();
+  this.grid = new CellsManager(4);
 }
 
 EventCatcher.prototype.listen = function(first_argument) {
+  var self = this;
   document.addEventListener("keydown", function (event) {
     switch(event.which) {
       case 37:
@@ -13,6 +15,8 @@ EventCatcher.prototype.listen = function(first_argument) {
         break;
       case 39:
         alert('right');
+        self.grid.moveRight();
+        self.grid.addNewNumber();
         break;
       case 40:
         alert('down');
