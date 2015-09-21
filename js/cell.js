@@ -19,6 +19,22 @@ Cell.prototype.isFull = function() {
   return !this.isEmpty();
 };
 
+Cell.prototype.right = function() {
+  return this.position.x+'_'+(this.position.y+1);
+};
+
+Cell.prototype.left = function() {
+  return this.position.x+'_'+(this.position.y-1);
+};
+
+Cell.prototype.top = function() {
+  return (this.position.x-1)+'_'+this.position.y;
+};
+
+Cell.prototype.bottom = function() {
+  return (this.position.x+1)+'_'+this.position.y;
+};
+
 Cell.prototype.getDOMElement = function() {
   var selector = 'pos_'+this.position.x+'_'+this.position.y;
   return document.getElementById(selector);
@@ -29,6 +45,15 @@ Cell.prototype.moveNumberTo = function(nextCell) {
   this.number = null;
   nextCell.updateHTML();
   this.updateHTML();
+};
+
+Cell.prototype.mergeWith = function(prewCell) {
+  this.number = null;
+  this.updateHTML();
+  this.number = prewCell.number * 2;
+  prewCell.number = null;
+  this.updateHTML();
+  prewCell.updateHTML();
 };
 
 Cell.prototype.updateHTML = function() {

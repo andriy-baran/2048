@@ -1,3 +1,0 @@
-function GameDispatcher (argument) {
-  // body...
-}
