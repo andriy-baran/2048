@@ -36,12 +36,15 @@ function CellsManager(size) {
 
   self.move =function(code){
     self.direction = map[code];
+    self.clearMergeabilityFlags();
     self[self.direction+'OrderFullCells']().forEach(function(prevCell){
       var nextCell = self.cells_obj[prevCell[self.direction]()];
-      while (nextCell && ((nextCell.isEmpty() && movingApplicable(nextCell)) || (nextCell.isFull() && nextCell.number == prevCell.number))){
+      while (nextCell && (nextCell.isEmpty() || (nextCell.isFull() && nextCell.number == prevCell.number))){
         if(nextCell.isFull() && nextCell.number == prevCell.number){
-          nextCell.mergeWith(prevCell);
-          break;
+          if(!nextCell.merged && !prevCell.merged) {
+            nextCell.mergeWith(prevCell);
+            break;
+          }
         } else {
           prevCell.moveNumberTo(nextCell);
         }
@@ -67,6 +70,12 @@ function CellsManager(size) {
     return self.getFullCells().sort(function(a,b){ return a.position.x < b.position.x });
   }
 
+  self.clearMergeabilityFlags = function(){
+    self.cells.forEach(function(cell, index){
+      cell.merged = false;
+    });
+  }
+
   self.addNewNumber = function (){
     var empty = self.getEmptyCells()
     if(empty.length > 0) {
@@ -89,23 +98,6 @@ function CellsManager(size) {
       }
     }
   };
-
-  function movingApplicable(cell){
-    switch(self.direction) {
-      case 'right':
-        return cell.position.y < self.size
-        break;
-      case 'left':
-        return cell.position.y >= 0
-        break;
-      case 'top':
-        return cell.position.x >= 0
-        break;
-      case 'bottom':
-        return cell.position.x < self.size
-        break;
-    }
-  }
 
   self.init();
 };

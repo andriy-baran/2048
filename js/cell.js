@@ -1,6 +1,7 @@
 function Cell (position) {
   this.position = position;
   this.number = null;
+  this.merged = false;
 };
 
 Cell.prototype.isXEqual = function(x) {
@@ -51,6 +52,7 @@ Cell.prototype.mergeWith = function(prewCell) {
   this.number = null;
   this.updateHTML();
   this.number = prewCell.number * 2;
+  this.merged = true;
   prewCell.number = null;
   this.updateHTML();
   prewCell.updateHTML();
