@@ -40,8 +40,8 @@ function CellsManager(size) {
     self[self.direction+'OrderFullCells']().forEach(function(prevCell){
       var nextCell = self.cells_obj[prevCell[self.direction]()];
       while (nextCell && (nextCell.isEmpty() || (nextCell.isFull() && nextCell.number == prevCell.number))){
-        if(nextCell.isFull() && nextCell.number == prevCell.number){
-          if(!nextCell.merged && !prevCell.merged) {
+        if(nextCell.isFull()){
+          if(!nextCell.merged && !prevCell.merged && nextCell.number == prevCell.number) {
             nextCell.mergeWith(prevCell);
             break;
           }
@@ -55,19 +55,35 @@ function CellsManager(size) {
   }
 
   self.rightOrderFullCells = function(){
-    return self.getFullCells().sort(function(a,b){ return a.position.y < b.position.y });
+    return self.getFullCells().sort(function(a,b){
+      if(a.position.y > b.position.y){
+        return -1;
+      }
+      if(a.position.y < b.position.y){
+        return 1;
+      }
+      return 0;
+    })
   }
 
   self.leftOrderFullCells = function(){
-    return self.getFullCells().sort(function(a,b){ return a.position.y > b.position.y });
+    return self.rightOrderFullCells().reverse();
   }
 
   self.topOrderFullCells = function(){
-    return self.getFullCells().sort(function(a,b){ return a.position.x > b.position.x });
+    return self.bottomOrderFullCells().reverse();
   }
 
   self.bottomOrderFullCells = function(){
-    return self.getFullCells().sort(function(a,b){ return a.position.x < b.position.x });
+    return self.getFullCells().sort(function(a,b){
+      if(a.position.x > b.position.x){
+        return -1;
+      }
+      if(a.position.x < b.position.x){
+        return 1;
+      }
+      return 0;
+    })
   }
 
   self.clearMergeabilityFlags = function(){
